@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+     <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+     <!-- Your custom CSS -->
+     <link rel="stylesheet" href="{% static 'dashboard.css' %}"/>
+
+    <style> 
+        .logout-button {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+        }
+        .logout-button:hover {
+            background-color: red;
+            color: white;
+        }
+        
+    </style>
+
+</head>
+<body>
+    <h2>Notebook Dashboard</h2>
+    {% for i in messages %}
+    <p>{{i}}</p>
+    {% endfor %}
+    <form method ="POST" id="noteForm" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="noteTitle">Note Title:</label><br>
+        <input type="text" id="noteTitle" name="noteTitle"><br><br>
+        <label for="noteContent">Note Content:</label><br>
+        <textarea id="noteContent" name="noteContent" rows="4" cols="50" ></textarea><br><br>
+        <label for="noteImage">Image (if any):</label><br>
+        <input type="file" id="noteTitle" name="image"><br><br>
+        <input type="submit" value="Add Note" name="submit_note">
+        
+    <h3>Notes</h3>
+    <table border="1">
+        <thead class = "">
+            <tr>
+                <th>Title</th>
+                <th style="width: 400px;">Description</th>
+                <th style="width: 200px">Image</th>
+                <th>Date</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody id="notesTable">
+            {% for notes in all_notes %}
+            <tr>
+            <td>
+                {{notes.title}}
+            </td>
+            <td>
+                {{notes.description}}
+            </td>
+            <td>
+                <img src="{{media_url}}{{notes.image}}" alt="My notebook Image" width="300px" height="auto";>
+            </td>
+            <td>
+               {{notes.date}}
+            </td>
+            <td>
+                <input type="submit" value="Delete" name = "delete_note">
+                <input type="hidden" value= "{{notes.pk}}" name="note_id">
+            </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </form>
+    <form method = "post">
+    {% csrf_token %}
+    <input type="submit" class="logout-button" value="Logout" name = "logout_btn">
+    </form>
+</body>
+</html>

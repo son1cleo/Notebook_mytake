@@ -1,0 +1,68 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('/static/imgs/cover.jpg');
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    
+}
+
+
+.homepage {
+    display: inline-flex;
+}
+
+.homepage .static-txt{
+    font-family: monospace;
+    color: black;
+    font-size: 50px;
+    font-weight: 400;
+}
+
+.homepage .dynamic-txt{
+    margin-left: 15px;
+    line-height: 90px;
+    height: 90px;
+    overflow: hidden;
+}
+
+.dynamic-txt li span::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-image: url('/static/imgs/cover.jpg');
+    background-size: cover;
+    border-left: 2px solid black;
+    animation: typing 1.5s steps(8) infinite;
+}
+
+@keyframes typing {
+    100% {
+        left: 100%;
+        margin: 0 -35px 0 35px;
+    } 
+}
+.dynamic-txt li {
+    font-family: monospace;
+    list-style: none;
+    font-size: 50px;
+    font-weight: bold;
+    position: relative;
+    top: 0;
+    animation: slide 6s steps(4) infinite;
+
+}
+
+@keyframes slide {
+    100% {
+        top: -360px;
+    } 
+}
+.dynamic-txt li span{
+    position: relative;
+}
+

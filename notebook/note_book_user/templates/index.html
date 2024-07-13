@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoteBook</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'index.css' %}?{% now 'U' %}"/>
+</head>
+<body>
+    <div class="homepage">
+        <div class ="static-txt">MyNote</div>
+        <ul class="dynamic-txt">
+            <li><span>NOTES</span></li>
+            <li><span>THOUGHTS</span></li>
+            <li><span>IDEAS</span></li>
+        </ul>
+    </div>
+    <div class="links">
+        <a class="btn btn-dark txt-primary rounded buttons" href="{% url 'note_book_user:login' %}">Login</a>
+        <a class="btn btn-outline-dark txt-success rounded buttons" href="{% url 'note_book_user:signup' %}">Signup</a>
+    </div>
+</body>
+</html>

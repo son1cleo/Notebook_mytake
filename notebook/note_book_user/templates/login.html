@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Your custom CSS -->
+    <link rel="stylesheet" href="/static/login.css?{% now "U" %}"/>
+</head>
+<body>
+    <h1>My Note Book</h1>
+    <h2>Login Page</h2>
+    {% for i in messages %}
+    <p>{{i}}</p>
+    {% endfor %}
+    <form method="post">
+        {% csrf_token %}
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username"><br><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password"><br><br>
+        <input type="submit" value="Login" name = "login_button">
+    </form>
+</body>
+</html>
